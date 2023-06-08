@@ -9,4 +9,4 @@ if __name__ == "__main__":
     else:
         print(f"{len(sys.argv) - 1} arguments:")
         for i in range(1, len((sys.argv))):
-         print(f"{i}: {sys.argv[i]}")
+            print(f"{i}: {sys.argv[i]}")
