@@ -1,27 +1,32 @@
 #!/usr/bin/python3
 """
-    Text indentation:
-    Module that idents a text
+Definning a text identation function.
 """
 
 
 def text_indentation(text):
-    """ text_identation - Idents a text by adding 2 new lines after chars (.?:)
-
-        Arguments:
-            text (str): text to ident
     """
-    if isinstance(text, str) is False:
+    Prints a text with 2 new lines.
+    Arguments:
+        dataype:
+    Raises:
+        TypeError (text): Text must be a string.
+    """
+
+    if not isinstance(text, str):
         raise TypeError("text must be a string")
+
     i = 0
-    chars = ".?:"
-    while (i < len(text)):
-        if text[i] in chars:
-            print(text[i], end="\n\n")
-            if i < (len(text) - 1) and text[i + 1] == " ":
-                i += 2
-            else:
-                i += 1
-        else:
-            print(text[i], end="")
+    while i < len(text) and text[i] == ' ':
+        i += 1
+
+    while i < len(text):
+        print(text[i], end="")
+        if text[i] == "\n" or text[i] in ".?:":
+            if text[i] in ".?:":
+                print("\n")
             i += 1
+            while i < len(text) and text[i] == ' ':
+                i += 1
+            continue
+        i += 1
