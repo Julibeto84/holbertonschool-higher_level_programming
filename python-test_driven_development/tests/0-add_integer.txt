@@ -1,29 +1,73 @@
-0-add_integer
-=============
+    ======================
+0. Add integer module
+======================
+Function
+========
+Function to add two integers, a and b, these must be integers or floats, otherwise
+raise a TypeError exception.
+
+Import module:
+======================
 
     >>> add_integer = __import__('0-add_integer').add_integer
 
-    >>> add_integer(1, 2)
-    3
-    >>> add_integer(1.2, 2.5)
-    3
-    >>> add_integer('a', 3)
+======================
+Should return the sum of two integers:
+    >>> add_integer(5, 6)
+    11
+
+Should return an integer (check type):
+    >>> type(add_integer(-3.465446789, -4.83349889)) == int
+    True
+
+Should return the sum of a = float and b = int:
+    >>> add_integer(3.2, 4)
+    7
+
+Should return the sum of a = int and b = float:
+    >>> add_integer(5, 4.6)
+    9
+
+Should return the sum of a = int and b = 98:
+    >>> add_integer(10)
+    108
+
+Should return the sum of a = 2 and b = -2:
+    >>> add_integer(2, -2)
+    0
+
+Should raise an exception TypeError for a:
+    >>> add_integer(None)
     Traceback (most recent call last):
-        ...
+    ...
     TypeError: a must be an integer
-    >>> add_integer(1, 'b')
+
+Should raise an exception TypeError for a = tuple:
+    >>> add_integer((4,5), 3)
     Traceback (most recent call last):
-        ...
-    TypeError: b must be an integer
-    >>> add_integer("School", 3)
-    Traceback (most recent call last):
-        ...
+    ...
     TypeError: a must be an integer
-    >>> add_integer(1, "School")
+
+Should raise an exception TypeError for b = string:
+    >>> add_integer(7, "3")
     Traceback (most recent call last):
-        ...
+    ...
     TypeError: b must be an integer
-    >>> add_integer(100.2, 200.4)
-    300
-    >>> add_integer(200.4, 100.2)
-    300
+
+Should raise an exception TypeError void Function:
+    >>> add_integer()
+    Traceback (most recent call last):
+    ...
+    TypeError: add_integer() missing 1 required positional argument: 'a'
+
+Should raise an exception TypeError for infinite number:
+    >>> add_integer(float('inf'), 8)
+    Traceback (most recent call last):
+    ...
+    OverflowError: cannot convert float infinity to integer
+
+Should raise an exception ValueError:
+    >>> add_integer(float('NaN'), -2)
+    Traceback (most recent call last):
+    ...
+    ValueError: cannot convert float NaN to integer
