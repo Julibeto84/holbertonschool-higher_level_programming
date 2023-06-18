@@ -1,21 +1,20 @@
 #!/usr/bin/python3
-""" Add integer
-    This modlue adds two numbers """
+""" add_integer - adds 2 integers
+    returns an integer: the addition of a and b
+"""
 
 
 def add_integer(a, b=98):
-    """ Arguments:
-        a: First number to add (int or float)
-        b: Second number to add (int or float)
-
-    Returns:
-        int: The sum of both numbers casted to intigers.
-        TypeError if a or b is not a number
     """
-
-    if isinstance(a, int) is False and isinstance(a, float) is False:
+    Arguments:
+        Datatypes
+    Raises:
+        TypeError (a): Must be an integer.
+        TypeError (b): Must be an integer.
+    """
+    if (not isinstance(a, int) and not isinstance(a, float)):
         raise TypeError("a must be an integer")
-    if isinstance(b, int) is False and isinstance(b, float) is False:
+    if (not isinstance(b, int) and not isinstance(b, float)):
         raise TypeError("b must be an integer")
-    return int(a) + int(b)
-
+    """Returns an integer: the addition of a and b"""
+    return (int(a) + int(b))
