@@ -1,18 +1,27 @@
 #!/usr/bin/python3
-"""
-    Module for geometry class
-"""
+
+"""Defines clase Square"""
+Rectangle = __import__('9-rectangle').Rectangle
 
 
-class BaseGeometry:
+class Square(Rectangle):
     """
-        Base geometry class
+    Initializes square class
     """
+    def __init__(self, size):
+        """
+        size initializer
+        """
+        self.integer_validator("size", size)
+        self.__size = size
+
     def area(self):
-        raise Exception("area() is not implemented")
+        """
+        Area of square
+        """
+        return self.__size * self.__size
 
-    def integer_validator(self, name, value):
-        if type(value) is not int:
-            raise TypeError("{:s} must be an integer".format(name))
-        if (value <= 0):
-            raise ValueError("{:s} must be greater than 0".format(name))
+    def __str__(self):
+        """print square"""
+        return "[Square] {:d}/{:d}".format(self.__size, self.__size)
+
