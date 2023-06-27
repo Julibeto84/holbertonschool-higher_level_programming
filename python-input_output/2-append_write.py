@@ -1,18 +1,12 @@
 #!/usr/bin/python3
-""" Module that contains a function that returns the JSON
-representation of an object
 """
-import json
+Definning a function wich appends a string.
+"""
 
 
-def to_json_string(my_obj):
-    """ Function that returns the JSON representation of an object
-
-    Args:
-        my_obj: object
-
-    Raises:
-        Exception: when the object can't be encoded
-
+def append_write(filename="", text=""):
     """
-    return json.dumps(my_obj)
+    Appends string to the end
+    """
+    with open(filename, "a", encoding="utf-8") as file:
+        return file.write(text)
