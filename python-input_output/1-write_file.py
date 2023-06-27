@@ -1,12 +1,19 @@
 #!/usr/bin/python3
-"""
-Definning a file reading function.
+""" Module that contains a function that writes to a text file
 """
 
 
-def read_file(filename=""):
+def write_file(filename="", text=""):
+    """ Function that writes to a text file
+
+    Args:
+        filename: filename
+        text: text to write
+
+    Raises
+        Exception: when the file can be opened
+
     """
-    Prints the UTF8 file to stdout.
-    """
-    with open(filename, encoding="utf-8") as file:
-        print(file.read(), end="")
+
+    with open(filename, 'w', encoding="utf-8") as f:
+        return f.write(text)
