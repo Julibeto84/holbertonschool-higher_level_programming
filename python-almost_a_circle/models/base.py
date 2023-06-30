@@ -3,6 +3,8 @@
 This module contains the "Base" class
 """
 
+
+import json
 class Base:
     """A base class"""
     __nb_objects = 0
@@ -14,5 +16,3 @@ class Base:
             self.id = self.__nb_objects
         else:
             self.id = id
-
-
