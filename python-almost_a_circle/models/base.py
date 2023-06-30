@@ -1,69 +1,75 @@
 #!/usr/bin/python3
-"""
-This module contains the "Base" class
-"""
-
-import csv
+""" base: class Base """
 import json
-import turtle
 
 
 class Base:
-    """A base class"""
+    """
+        class Base
+        Attributes:
+            __nb_objects(int): number of objects
+    """
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """Initialize the base class"""
-        if id is None:
-            Base.__nb_objects += 1
-            self.id = self.__nb_objects
-        else:
+        """
+            initializes all instances
+        """
+        if id is not None:
             self.id = id
+        else:
+            __class__.__nb_objects += 1
+            self.id = __class__.__nb_objects
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """returns the JSON string representation of a list of dictionaries"""
-        if list_dictionaries is None:
-            list_dictionaries = []
+        """ returns JSON representation of list_dictionaries """
+        if list_dictionaries is None or list_dictionaries == []:
+            return '[]'
+        if (type(list_dictionaries) != list or
+                not all(type(item) == dict for item in list_dictionaries)):
+            raise TypeError("list_dictionaries must be a list of dictionaries")
         return json.dumps(list_dictionaries)
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """ writes the JSON representation of list_objs to a file """
+        filename = cls.__name__ + '.json'
+        list_of_dicts = []
+        if list_objs is not None:
+            for item in list_objs:
+                list_of_dicts.append(cls.to_dictionary(item))
+        jsonstr = cls.to_json_string(list_of_dicts)
+        with open(filename, 'w') as f:
+            f.write(jsonstr)
 
     @staticmethod
     def from_json_string(json_string):
-        """returns the list of the JSON string representation json_string"""
+        """ returns the list of the JSON string representation json_string """
         if json_string is None or len(json_string) == 0:
             return []
         return json.loads(json_string)
 
     @classmethod
-    def save_to_file(cls, list_objs):
-        """writes the JSON string representation of list_objs to a file"""
-        filename = cls.__name__ + ".json"
-        lo = []
-        if list_objs is not None:
-            for i in list_objs:
-                lo.append(cls.to_dictionary(i))
-        with open(filename, 'w') as f:
-            f.write(cls.to_json_string(lo))
-
-    @classmethod
     def create(cls, **dictionary):
-        """returns an instance with all attributes already set"""
-        if cls.__name__ is "Rectangle":
-            dummy = cls(1, 1)
-        elif cls.__name__ is "Square":
-            dummy = cls(1)
-        dummy.update(**dictionary)
-        return dummy
+        """ returns an instance with all attributes already set """
+        if cls.__name__ == 'Rectangle':
+            dummy_obj = cls(1, 1)
+        if cls.__name__ == 'Square':
+            dummy_obj = cls(1)
+        dummy_obj.update(**dictionary)
+        return dummy_obj
 
     @classmethod
     def load_from_file(cls):
-        filename = cls.__name__ + ".json"
-        l = []
-        try:
-            with open(filename, 'r') as f:
-                l = cls.from_json_string(f.read())
-            for i, e in enumerate(l):
-                l[i] = cls.create(**l[i])
-        except:
-            pass
-        return l
+        """ returns a list of instances """
+        filename = cls.__name__ + '.json'
+        if filename is None:
+            return []
+        with open(filename, 'r') as f:
+            content = cls.from_json_string(f.read())
+       
+        instance_list = []
+        for k, v in enumerate(content):
+            instance_list.append(cls.create(**content[k]))
+        return instance_list
