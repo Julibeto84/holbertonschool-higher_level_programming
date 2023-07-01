@@ -202,5 +202,3 @@ class Rectangle(Base):
         dict_rep["height"] = self.height
         dict_rep["width"] = self.width
         return dict_rep
-
-
