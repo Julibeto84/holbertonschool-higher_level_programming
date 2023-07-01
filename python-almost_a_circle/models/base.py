@@ -95,4 +95,3 @@ class Base:
             new_obj = cls.create(**obj_dict)
             ret.append(new_obj)
         return(ret)
-    
