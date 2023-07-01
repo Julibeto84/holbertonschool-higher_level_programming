@@ -99,5 +99,3 @@ class Square(Rectangle):
         dict_rep["size"] = self.size
         dict_rep["y"] = self.y
         return dict_rep
-
-
