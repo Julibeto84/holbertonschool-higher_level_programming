@@ -10,4 +10,3 @@ print(f"Middle word: {middle_word}")
 
 
 
-
