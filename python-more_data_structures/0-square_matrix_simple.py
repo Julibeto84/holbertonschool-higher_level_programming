@@ -6,8 +6,3 @@ def square_matrix_simple(matrix=[]):
         for x, celda in enumerate(row):
             new_matrix[y][x] = celda * celda
     return new_matrix
-
-        
-        
-        
-
