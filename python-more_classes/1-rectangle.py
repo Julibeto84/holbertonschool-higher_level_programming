@@ -2,15 +2,16 @@
 """Define a class Rectangule"""
 
 class Rectangle:
-    """Class will be used to create a objects that represent rectangle."""
+    
     def __init__(self, width=0, height=0):
+        """Initialize a new Rectangle."""
         self.width = width
         self.height = height
 
     @property
     def width(self):
         """Get/set the width of the rectangule."""
-        return self.width
+        return self.__width
     
     @width.setter
     def width(self, value):
@@ -23,7 +24,7 @@ class Rectangle:
     @property
     def height(self):
         """Get/set the width of the rectangule."""
-        return self.height
+        return self.__height
     
 
     @height.setter
