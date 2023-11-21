@@ -49,4 +49,7 @@ class Rectangle:
     def __str__(self):
         if self.width == 0 or self.height == 0:
             return ""
-        
+        rect = ""
+        for _ in range(self.height):
+            rect += "#" * self.width + "\n"
+        return rect
