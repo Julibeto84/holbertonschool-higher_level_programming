@@ -42,7 +42,7 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
-    
+
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         """Return the Rectangle with the greater area."""
